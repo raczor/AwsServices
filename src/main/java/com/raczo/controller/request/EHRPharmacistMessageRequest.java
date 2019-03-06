@@ -2,23 +2,25 @@ package com.raczo.controller.request;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.Valid;
+import java.util.Date;
 
 @Getter
 @Setter
-public class InsurerWorkerRequest {
-    @NotEmpty
+public class EHRPharmacistMessageRequest {
+    private String uuid;
+    private String action;
     private String source;
+    private Payload payload;
 
-    @NotEmpty
-    private String monitorId;
-
-    @NotEmpty
-    private String responseQueue;
-
-    @Valid
-    private InsurerWorkerPayloadRequest payload;
+    @Getter
+    @Setter
+    public static class Payload {
+        private String messageId;
+        private Long prescriptionId;
+        private String message;
+        private String pharmacyName;
+        private Date createdAt;
+    }
 
 }
